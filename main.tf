@@ -33,8 +33,8 @@ resource "github_repository_file" "readme" {
   branch     = "main"
   file       = "README.md"
   content = templatefile("${path.module}/templates/README.md", {
-    application_name  = var.waypoint_application,
-    destination_org   = var.destination_org
+    application_name = var.waypoint_application,
+    destination_org  = var.destination_org
   })
   commit_message      = "Added readme file."
   commit_author       = "Platform team"
