@@ -43,6 +43,16 @@ resource "github_repository_file" "readme" {
   overwrite_on_create = true
 }
 
+resource "github_repository_file" "dnt-policy" {
+  repository     = github_repository.gh_repo.name
+  branch         = "main"
+  file           = "app/.well-known/dnt-policy.txt"
+  content        = file("${path.module}/templates/dnt-policy.txt")
+  commit_message = "Add dnt-policy"
+  commit_author  = "Platform Team"
+  commit_email   = "platform@smallwins.club"
+}
+
 resource "github_actions_environment_secret" "slack_hook_url" {
   repository      = github_repository.gh_repo.name
   environment     = "github-pages"
